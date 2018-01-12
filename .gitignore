@@ -1,0 +1,10 @@
+.classpath
+.project
+*.log
+.idea
+.settings/
+bin/
+target/
+log/
+/.metadata/
+/target/
