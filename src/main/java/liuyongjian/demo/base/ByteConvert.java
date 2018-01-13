@@ -38,8 +38,4 @@ public class ByteConvert {
 		assertEquals(b, c);
 	}
 	
-	@Test
-	public void ad() {
-		Integer a = new Integer(200);
-	}
 }
