@@ -3,9 +3,10 @@ package liuyongjian.demo.base;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class ByteConvert {
+public class BaseTest {
 	@Test
 	public void aa() {
+		// 二进制，八进制，十进制，十六进制比较
 		int a = 0b1011;
 		int b = 013;
 		int c = 11;
@@ -31,16 +32,15 @@ public class ByteConvert {
 		int a = 228; // 00000000 00000000 00000000 11100100
 		byte b = -28;
 		// 1. byte转换为int 11111111 11111111 11111111 11100100
-		// 2. int & 0xFF 去除前24位
-		// 11111111 11111111 11111111 11100100 & 00000000 00000000 00000000 11111111
+		// 2. 11111111 11111111 11111111 11100100 & 00000000 00000000 00000000 11111111 
 		// 3. result: 00000000 00000000 00000000 11100100
-		assertEquals(b & 0xFF, a);
+		assertEquals(a, b & 0xFF);
 	}
 	
 	@Test
 	public void ad() {
 		int a = 130; // int截断24高位, 判断剩余8位首位，若为1则为负数，计算后7位补码，若为0不计算后7位
-		assertEquals((byte)a, -126);
+		assertEquals(-126, (byte)a);
 	}
 	
 	@Test
@@ -48,7 +48,7 @@ public class ByteConvert {
 		// 任一中文
 		String chineseChar = "昺";
 		byte[] bytes = chineseChar.getBytes();
-		
+
 		assertEquals("111", Integer.toBinaryString(bytes[0] & 0xFF).substring(0, 3));
 		assertEquals("10",  Integer.toBinaryString(bytes[1] & 0xFF).substring(0, 2));
 		assertEquals("10",  Integer.toBinaryString(bytes[2] & 0xFF).substring(0, 2));
@@ -56,6 +56,7 @@ public class ByteConvert {
 	
 	@Test
 	public void af() {
+		// 强制类型转换
 		long l = 100000000000000l;
 		int i = (int) l;
 		assertEquals(276447232, i);
@@ -63,5 +64,16 @@ public class ByteConvert {
 		int a = 10;
 		long b = a;
 		assertEquals(10, b);
+	}
+	
+	@Test
+	public void ag() {
+		// 移位操作符
+		int number = 10;
+		number >>= 1;
+		assertEquals(5, number);
+		
+		number <<= 1;
+		assertEquals(10, number);
 	}
 }
