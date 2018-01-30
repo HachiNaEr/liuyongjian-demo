@@ -76,4 +76,12 @@ public class BaseTest {
 		number <<= 1;
 		assertEquals(10, number);
 	}
+	
+	@Test
+	public void ah() {
+		assertEquals("str11",  "str" + 1 + 1);
+		assertEquals("2str",   1 + 1 + "str");
+		assertEquals("3str12", 1 + 2 + "str" + 1 + 2);
+	}
+	
 }
