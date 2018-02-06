@@ -1,9 +1,10 @@
 package liuyongjian.demo.base;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
-public class BaseTest {
+public class BaseTest extends Object{
 	@Test
 	public void aa() {
 		// 二进制，八进制，十进制，十六进制比较
@@ -84,4 +85,41 @@ public class BaseTest {
 		assertEquals("3str12", 1 + 2 + "str" + 1 + 2);
 	}
 	
+	@Test
+	public void ai() {
+		// E为指数基数10
+		assertEquals(200000, 20e4, 0);
+	}
+	
+	@Test
+	public void aj() {
+		// 数组初始化
+		int[] ints = {0, 1};
+		int[] intss = new int[2];
+		int[] intsss = new int[]{0, 1};
+		intss[0] = 0;
+		intss[1] = 1;
+		assertArrayEquals(intss, ints);
+		assertArrayEquals(intsss, intss);
+	}
+	
+	@Test
+	public void ak() {
+		
+	}
+	
+	@Test
+	public void al() {
+		
+	}
+	
+	@Test
+	public void am() {
+		
+	}
+	
+	@Test
+	public void an() {
+		
+	}
 }
