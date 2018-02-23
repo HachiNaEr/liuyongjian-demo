@@ -2,7 +2,23 @@ package liuyongjian.demo.base;
 
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Method;
+import java.time.DateTimeException;
+import java.time.DayOfWeek;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Base64;
+import java.util.stream.Stream;
+
 import org.junit.Test;
+
+import liuyongjian.demo.annotation.Person;
 
 public class BaseTest extends Object{
 	@Test
@@ -105,21 +121,150 @@ public class BaseTest extends Object{
 	
 	@Test
 	public void ak() {
+		// Base64
+		String str = "中文@#￥%……&*bc";
+		byte[] bytes = Base64.getEncoder().encode(str.getBytes());
+		String resultStr = new String(bytes);
+		assertEquals("5Lit5paHQCPvv6Ul4oCm4oCmJipiYw==", resultStr);
 		
+		String decodeStr = new String(Base64.getDecoder().decode(resultStr));
+		assertEquals(str, decodeStr);
 	}
 	
 	@Test
 	public void al() {
-		
+		// Duration 表示对于时间的区间比较
+		LocalDateTime l1 = LocalDateTime.of(2018, 2, 15, 12, 10);
+		LocalDateTime l2 = LocalDateTime.of(2018, 2, 15, 12, 12);
+		Duration d1 = Duration.between(l1, l2);
+		assertEquals(2, d1.toMinutes());
 	}
 	
-	@Test
+	@Test(expected = DateTimeException.class)
 	public void am() {
-		
+		// instant用于便于机器处理，LocalDateTime用于便于人阅读，不能混用
+		Instant instant = Instant.now();
+		LocalDateTime l1 = LocalDateTime.of(2018, 2, 15, 12, 10);
+		Duration.between(instant, l1);
 	}
 	
 	@Test
 	public void an() {
+		LocalDate localDate = LocalDate.of(2018, 1, 2);
+		// 下周一（含当天）
+		LocalDate localDate2 = localDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.MONDAY));
+		// 当月最后一天
+		LocalDate localDate3 = localDate2.with(TemporalAdjusters.lastDayOfMonth());
+		
+		assertEquals("2018-01-08", localDate2.toString());
+		assertEquals("2018-01-31", localDate3.toString());
+	}
+	
+	@Test
+	public void ao() {
+		// 实现当前日期的下一个工作日时间，用TemporalAdjusters实现比较复杂的时间处理
+		TemporalAdjuster nextWorkingDay = TemporalAdjusters.ofDateAdjuster(temporal -> {
+			DayOfWeek dow = DayOfWeek.of(temporal.get(ChronoField.DAY_OF_WEEK));
+			int dayToAdd = 1;
+			if (dow == DayOfWeek.FRIDAY) {
+				dayToAdd = 3;
+			}
+			if (dow == DayOfWeek.SATURDAY) {
+				dayToAdd = 2;
+			}
+			return temporal.plus(dayToAdd, ChronoUnit.DAYS);
+		});
+		LocalDate localDate = LocalDate.of(2018, 1, 5);
+		assertEquals("2018-01-08", localDate.with(nextWorkingDay).toString());
+	}
+	
+	@Test
+	@Person(name = "liuyongjian", age = 125)
+	@Person(name = "yongjianliu", age = 101)
+	@Person(name = "hello world", age = 100)
+	public void ap() {
+		// 测试多注解语法
+		String myName = "ap";
+		
+		for (Method method : getClass().getMethods()) {
+			if (myName.equals(method.getName())) {
+				Person[] person = method.getAnnotationsByType(Person.class);
+				for (int index = 0; index < person.length; index++) {
+					switch (index) {
+					case 0:
+						assertEquals("liuyongjian", person[index].name());
+						break;
+					case 1:
+						assertEquals("yongjianliu", person[index].name());
+						break;
+					case 2:
+						assertEquals("hello world", person[index].name());
+						break;
+					}
+				}
+			}
+		}
+	}
+	
+	@Test
+	public void aq() {
+		// Java8新语法 Long::sum
+		Long l = 3L;
+		assertEquals(l, Stream.iterate(0L, i -> i + 1).limit(3).reduce(0L, Long::sum));
+	}
+	
+	@Test
+	public void ar() {
+		
+	}
+	
+	@Test
+	public void as() {
+		
+	}
+	
+	@Test
+	public void at() {
+		
+	}
+	
+	@Test
+	public void au() {
+		
+	}
+	
+	@Test
+	public void av() {
+		
+	}
+	
+	@Test
+	public void aw() {
+		
+	}
+	
+	@Test
+	public void ax() {
+		
+	}
+	
+	@Test
+	public void ay() {
+		
+	}
+	
+	@Test
+	public void az() {
+		
+	}
+	
+	@Test
+	public void ba() {
+		
+	}
+	
+	@Test
+	public void bb() {
 		
 	}
 }
