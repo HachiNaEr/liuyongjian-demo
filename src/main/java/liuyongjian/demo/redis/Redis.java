@@ -25,7 +25,7 @@ public class Redis {
 	public static void main(String[] args) {
 		Jedis jedis = new Redis().conn(); 
 		
-		/*Pipeline pipeline = jedis.pipelined();
+		Pipeline pipeline = jedis.pipelined();
 		pipeline.multi();
 		pipeline.incr("test");
 		pipeline.incr("test");
@@ -38,11 +38,11 @@ public class Redis {
 		}
 		response.get().forEach(l -> {
 			System.err.println(l.toString());
-		});*/
+		});
 		
 		// 保存快照
-		/*String string = jedis.bgsave();
-		System.err.println(string);*/
+		String string = jedis.bgsave();
+		System.err.println(string);
 		
 		jedis.close();
 	}
