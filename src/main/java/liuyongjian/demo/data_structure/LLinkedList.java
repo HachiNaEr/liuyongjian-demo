@@ -1,4 +1,4 @@
-package liuyongjian.demo.algorithm;
+package liuyongjian.demo.data_structure;
 
 import java.util.NoSuchElementException;
 
