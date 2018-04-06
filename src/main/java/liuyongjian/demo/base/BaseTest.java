@@ -14,7 +14,6 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Base64;
-import java.util.LinkedList;
 import java.util.stream.Stream;
 
 import org.junit.Test;
@@ -216,9 +215,6 @@ public class BaseTest extends Object{
 	
 	@Test
 	public void ar() {
-		LinkedList<String> linkedList = new LinkedList<>();
-		boolean b = linkedList.add("aaa");
-		System.err.println(b);
 	}
 	
 	@Test
