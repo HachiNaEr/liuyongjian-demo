@@ -1,4 +1,4 @@
-package liuyongjian.demo.lucene;
+package liuyongjian.demo.lucene.model;
 
 import java.util.Arrays;
 import java.util.List;
