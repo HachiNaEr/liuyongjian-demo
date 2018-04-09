@@ -1,4 +1,4 @@
-package liuyongjian.demo.lucene.analyzer;
+package liuyongjian.demo.lucene.index;
 
 import java.io.IOException;
 import java.io.StringReader;

@@ -1,4 +1,4 @@
-package liuyongjian.demo.lucene.model;
+package liuyongjian.demo.lucene.index;
 
 import java.util.HashMap;
 import java.util.HashSet;
